@@ -11,7 +11,6 @@ import {
 import Header from "./components/Header";
 import TodoItem from "./components/TodoItem";
 import AddTodo from "./components/AddTodo";
-import Sandbox from "./components/Sandbox";
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -33,6 +32,9 @@ export default function App() {
     setTodos(prevTodos => {
       return prevTodos.filter(todo => todo.id != id);
     });
+    Alert.alert("Success!", "Successfully remove a To Do from To Do List", [
+      { text: "Okay" }
+    ]);
   };
 
   const submitHandler = text => {
@@ -46,20 +48,18 @@ export default function App() {
           ...prevTodos
         ];
       });
+      Alert.alert("Success!", "Successfully added new To Do", [
+        { text: "Okay" }
+      ]);
+      Keyboard.dismiss();
     } else {
       Alert.alert("Warning!", "To Do must be over 3 chars long", [
-        {
-          text: "Understood",
-          onPress: () => console.log("alert closed")
-        }
+        { text: "Understood" }
       ]);
     }
   };
 
   return (
-    // SandBox
-    // <Sandbox />
-
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.container}>
         <Header />
